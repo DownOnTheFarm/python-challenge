@@ -9,21 +9,20 @@ correyVotes = 0
 liVotes = 0
 otooleyVotes = 0
 
-# Set Path For File
+# Set Path
 csvpath = os.path.join('Resources', 'election_data.csv')
 
-# Open & Read CSV File
+
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvfile)
 
-    # Read Each Row Of Data After The Header
     for row in csvreader:
         
-        # Calculate Total Number Of Votes Cast
+        # Total Number Of Votes Cast
         totalVotes += 1
         
-        # Calculate Total Number Of Votes Each Candidate Won
+        # Total Number Of Votes per Candidate 
         if (row[2] == "Khan"):
             khanVotes += 1
         elif (row[2] == "Correy"):
@@ -33,13 +32,13 @@ with open(csvpath, newline='') as csvfile:
         else:
             otooleyVotes += 1
             
-    # Calculate Percentage Of Votes Each Candidate Won
+    # Percentage Of Votes per Candidate
     kahnPercent = khanVotes / totalVotes
     correyPercent = correyVotes / totalVotes
     liPercent = liVotes / totalVotes
     otooleyPercent = otooleyVotes / totalVotes
     
-    # Calculate Winner Of The Election Based On Popular Vote
+    # Winner Of The Election per Popular Vote
     winner = max(khanVotes, correyVotes, liVotes, otooleyVotes)
 
     if winner == khanVotes:
@@ -51,7 +50,7 @@ with open(csvpath, newline='') as csvfile:
     else:
         winnerName = "O'Tooley" 
 
-# Print Analysis
+# Print Voter Analysis
 print(f"Election Results")
 print(f"---------------------------")
 print(f"Total Votes: {totalVotes}")
@@ -64,13 +63,11 @@ print(f"---------------------------")
 print(f"Winner: {winnerName}")
 print(f"---------------------------")
 
-# Specify File To Write To
+# Path and Write Output File
 output_file = os.path.join('Analysis', 'election_data_revised.txt')
 
-# Open File Using "Write" Mode. Specify The Variable To Hold The Contents
 with open(output_file, 'w',) as txtfile:
 
-# Write New Data
     txtfile.write(f"Election Results\n")
     txtfile.write(f"---------------------------\n")
     txtfile.write(f"Total Votes: {totalVotes}\n")
